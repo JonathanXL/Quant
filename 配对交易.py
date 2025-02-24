@@ -34,7 +34,7 @@ y = pd.read_csv(r"C:\Users\j1839\Desktop\金融计量经济学\mydata\coint_ecm.
 # 检验是否存在协整关系
 print(coint(y.y1, y.y3,trend='c', autolag='bic'))
 
-test = arima(y.y1, exog=y.y3, trend='c').fit()
+test = arima(y.y1, exog=y.y3, trend='c')。fit()
 print(test.summary())
 
 # 得到协整组合后，计算残差序列
@@ -45,5 +45,5 @@ y3_d = y.y3.diff(1)[1:]
 ect_1 = ect.shift(1)[1:]
 aligned_data = pd.concat([y1_d, y3_d, ect_1], axis=1)
 aligned_data.columns = ['y1_d', 'y3_d', 'ect_1']
-mdl = arima(aligned_data['y1_d'], exog=aligned_data[['y3_d', 'ect_1']], trend='n').fit()
+mdl = arima(aligned_data['y1_d'], exog=aligned_data[['y3_d', 'ect_1']], trend='n')。fit()
 print(mdl.summary())
